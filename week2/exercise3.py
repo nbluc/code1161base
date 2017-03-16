@@ -213,7 +213,7 @@ def loops_6():
     for i in range(10):
         row = []
         for j in range(i + 1):
-            row.append(j)
+            row.append(str(j))
         the_wedge.append(row)
     return the_wedge
 
