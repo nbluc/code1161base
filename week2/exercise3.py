@@ -239,7 +239,18 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-    pass
+    the_pyramid = []
+    height = 5
+    middle = height - 1
+    for i in range(height):
+        row = []
+        for j in range(height*2 - 1):
+            if i >= middle - i and j <= middle + j:
+                row.append('*')
+            else:
+                row.append(' ')
+        the_pyramid.append(row)
+    return the_pyramid
 
 
 def lp(some_kind_of_list, exercise_name):
