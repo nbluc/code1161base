@@ -126,7 +126,7 @@ def super_asker(low, high):
                 else:
                     print("{} is not valid".format(input_number))
             except Exception as n:
-                print("{} is a bad numberr and will be thrown away".format(n))
+                print("{} is a bad number and will be thrown away".format(n))
 
     return(input_number)
 
