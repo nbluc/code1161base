@@ -9,10 +9,11 @@ from __future__ import division
 from __future__ import print_function
 import os
 
-print ("hello! Let's get started")
+
 jobs = ['get', 'this', 'file', 'to', 'pass', 'the', 'linter']
 InOtherWords = "make it show no linter errors"
 
+print ("hello! Let's get started")
 print(jobs)
 print(InOtherWords)
 print(2, "is smaller than", 7*0.5, "is", (2) < (7*0.5), ", which is a relief!")
