@@ -28,7 +28,13 @@ def success_is_relative():
     # this depends on excecution context. Take a look at your CWD and remember
     # that it changes.
     # print(path, CWD)
-    pass
+
+    mode = "r"  # from the docs
+    file_path = ("../code1161base/week1/pySuccessMessage.json")
+    success_message = open(file_path, mode)
+    response = success_message.read().strip()
+    return (response)
+    success_message.close()
 
 
 def get_some_details():
@@ -50,9 +56,14 @@ def get_some_details():
     json_data = open(LOCAL + "/lazyduck.json").read()
 
     data = json.loads(json_data)
-    return {"lastName":       None,
-            "password":       None,
-            "postcodePlusID": None
+    last = data["results"][0]["name"]["last"]
+    password = data["results"][0]["login"]["password"]
+    postcode = int(data["results"][0]["location"]["postcode"])
+    IDvalu = int(data["results"][0]["id"]["value"])
+    posid = postcode + IDvalu
+    return {"lastName":       last,
+            "password":       password,
+            "postcodePlusID": posid
             }
 
 
@@ -67,28 +78,42 @@ def wordy_pyramid():
     Return the pyramid as a list of strings.
     I.e. ["cep", "dwine", "tenoner", ...]
     [
-    "cep",
-    "dwine",
-    "tenoner",
-    "ectomeric",
-    "archmonarch",
-    "phlebenterism",
-    "autonephrotoxin",
-    "redifferentiation",
-    "phytosociologically",
-    "theologicohistorical",
-    "supersesquitertial",
-    "phosphomolybdate",
-    "spermatophoral",
-    "storiologist",
-    "concretion",
-    "geoblast",
-    "Nereis",
-    "Leto",
+    "cep", 3
+    "dwine", 5
+    "tenoner", 7
+    "ectomeric", 9
+    "archmonarch", 11
+    "phlebenterism", 13
+    "autonephrotoxin", 15
+    "redifferentiation", 17
+    "phytosociologically", 19
+    "theologicohistorical", 21
+    "supersesquitertial", 18
+    "phosphomolybdate", 16
+    "spermatophoral", 14
+    "storiologist", 12
+    "concretion", 10
+    "geoblast", 8
+    "Nereis", 6
+    "Leto", 4
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. ?len=
     """
-    pass
+    pyramid = []
+    url = "http://www.setgetgo.com/randomword/get.php?len="
+    length = 3
+    while length < 20:
+        wordlength = requests.get(url + str(length)).text
+        pyramid.append(str(wordlength))
+        length += 2
+
+    length = 20
+    while length >= 4:
+        wordlength = requests.get(url + str(length)).text
+        pyramid.append(str(wordlength))
+        length -= 2
+
+    return pyramid
 
 
 def wunderground():
@@ -103,7 +128,7 @@ def wunderground():
          variable and then future access will be easier.
     """
     base = "http://api.wunderground.com/api/"
-    api_key = "YOUR KEY - REGISTER TO GET ONE"
+    api_key = "69ecb183f9683984"
     country = "AU"
     city = "Sydney"
     template = "{base}/{key}/conditions/q/{country}/{city}.json"
@@ -111,11 +136,15 @@ def wunderground():
     r = requests.get(url)
     the_json = json.loads(r.text)
     obs = the_json['current_observation']
+    state = obs["display_location"]["state"]
+    latitude = obs["observation_location"]["latitude"]
+    longi = obs["observation_location"]["longitude"]
+    local = obs["local_tz_offset"]
 
-    return {"state":           None,
-            "latitude":        None,
-            "longitude":       None,
-            "local_tz_offset": None}
+    return {"state":           state,
+            "latitude":        latitude,
+            "longitude":       longi,
+            "local_tz_offset": local}
 
 
 def diarist():
@@ -131,7 +160,9 @@ def diarist():
     TIP: remember to commit 'lasers.pew' and push it to your repo, otherwise
          the test will have nothing to look at.
     """
-    pass
+    w = open("week4/Trispokedovetiles(laser).gcode", "r").read()
+    count = str(w.count("M10 P1"))
+    open("week4/lasers.pew", "w").write(count)
 
 
 if __name__ == "__main__":
