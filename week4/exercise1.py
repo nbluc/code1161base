@@ -87,7 +87,7 @@ def wordy_pyramid():
     "autonephrotoxin", 15
     "redifferentiation", 17
     "phytosociologically", 19
-    "theologicohistorical", 21
+    "theologicohistorical", 20
     "supersesquitertial", 18
     "phosphomolybdate", 16
     "spermatophoral", 14
@@ -101,14 +101,12 @@ def wordy_pyramid():
     """
     pyramid = []
     url = "http://www.setgetgo.com/randomword/get.php?len="
-    length = 3
-    while length < 20:
+    for length in range(3, 20, 2):
         wordlength = requests.get(url + str(length)).text
         pyramid.append(str(wordlength))
         length += 2
 
-    length = 20
-    while length >= 4:
+    for length in range(18, 4, -2):
         wordlength = requests.get(url + str(length)).text
         pyramid.append(str(wordlength))
         length -= 2
@@ -160,7 +158,7 @@ def diarist():
     TIP: remember to commit 'lasers.pew' and push it to your repo, otherwise
          the test will have nothing to look at.
     """
-    w = open("week4/Trispokedovetiles(laser).gcode", "r").read()
+    w = open("/Trispokedovetiles(laser).gcode", "r").read()
     count = str(w.count("M10 P1"))
     open("week4/lasers.pew", "w").write(count)
 
