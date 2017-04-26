@@ -101,12 +101,12 @@ def wordy_pyramid():
     """
     pyramid = []
     url = "http://www.setgetgo.com/randomword/get.php?len="
-    for length in range(3, 20, 2):
+    for length in range(3, 21, 2):
         wordlength = requests.get(url + str(length)).text
         pyramid.append(str(wordlength))
         length += 2
 
-    for length in range(18, 4, -2):
+    for length in range(20, 4, -2):
         wordlength = requests.get(url + str(length)).text
         pyramid.append(str(wordlength))
         length -= 2
@@ -158,7 +158,7 @@ def diarist():
     TIP: remember to commit 'lasers.pew' and push it to your repo, otherwise
          the test will have nothing to look at.
     """
-    w = open("/Trispokedovetiles(laser).gcode", "r").read()
+    w = open("week4/Trispokedovetiles(laser).gcode", "r").read()
     count = str(w.count("M10 P1"))
     open("week4/lasers.pew", "w").write(count)
 
