@@ -146,14 +146,7 @@ def loops_4():
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     ]
     """
-    number_square = []
-    for i in range(10):
-        number_row = []
-        for j in range(10):
-            number_row.append(j)
-        number_square.append(number_row)
-
-    return number_square
+    return map(lambda x: map(lambda x: str(x), range(10)), range(10))
 
 
 def loops_5():
@@ -239,18 +232,25 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-    the_pyramid = []
-    height = 5
-    middle = height - 1
-    for i in range(height):
+    def isPointOnPyramid(i, j):
+        if j == 4:
+            row.append('*')
+        if (j > 4 - (i+1)) & (j < 4 + (i)):
+            row.append('*')
+        else:
+            row.append(' ')
+
+    column = []
+
+    for i in range(5):
         row = []
-        for j in range(height*2 - 1):
-            if i >= middle - i and j <= middle + j:
-                row.append('*')
-            else:
-                row.append(' ')
-        the_pyramid.append(row)
-    return the_pyramid
+        for j in range(8):
+            isPointOnPyramid(i, j)
+        column.append(row)
+
+    print(column)
+    return column
+    pass
 
 
 def lp(some_kind_of_list, exercise_name):
